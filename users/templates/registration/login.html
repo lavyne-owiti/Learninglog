@@ -7,16 +7,74 @@
     <title>Document</title>
 </head>
 <body>
+    <style>
+        h2{
+            font-size: 40px;
+            padding-top: 2%;
+            margin-left: 5%;
+        }
+        .form{
+            width: 90%;
+            margin: auto;
+            
+        }
+        .center{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .button{
+            background-color: blue;
+            border: none;
+            color: white;
+            padding: 12px 32px;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 4px;
+            font-size: 16px; 
+            margin-top: 2%;  
+            width: 100%;
+        }
+        button:hover {
+        opacity: 0.8;
+        }
+        input{
+            width: 100%;
+            padding: 12px 20px;
+            margin: 8px 0;
+            display: inline-block;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+        }
+        .imgcontainer {
+            text-align: center;
+            margin: 24px 0 12px 0;
+        }
+        img.avatar {
+            padding-top: 2%;
+            width: 150px;
+            border-radius: 50%;
+        }
+
+    </style>
     {% extends "learning_logs/base.html" %}
+    {% block page_header %}
+    <h2>Log into your account.</h2>
+    {% endblock page_header %}
     {%block content %}
-    {% if form.errore %}
+    {% if form.errors %}
     <p>Your username and password didn't match.Please try again.</p>
     {% endif %}
 
-    <form method="post" action="{% url 'users:login' %}">
+    <form method="post" action="{% url 'users:login' %}" class="form">
+        <div class="imgcontainer">
+            <img src="https://images.unsplash.com/photo-1589156280159-27698a70f29e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=386&q=80" alt="avatar" class="avatar">
+        </div>
         {%csrf_token %}
         {{ form.as_p}}
-        <button name="submit">Log in</button>
+        <div class="center">
+            <button name="submit" class="button">Log in</button>
+        </div>
         <input type="hidden" name="next"
         value="{% url 'learning_logs:index' %}"/>
     </form>

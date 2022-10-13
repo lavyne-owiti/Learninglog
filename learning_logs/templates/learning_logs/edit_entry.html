@@ -7,15 +7,76 @@
     <title>Document</title>
 </head>
 <body>
+    <style>
+        h1{
+            text-align: center;
+        }
+        .form{
+            width: 90%;
+            margin: auto; 
+        }
+        input{
+            width: 100%;
+            padding: 12px 20px;
+            margin: 8px 0;
+            display: inline-block;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+        }
+        .button{
+            background-color: pink;
+            border: none;
+            padding: 10px 48px;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 8px;
+            cursor: pointer; 
+            margin-left: 4%;
+        }
+        .button a{
+            color: blue;
+            text-decoration: none;
+            font-size: 20px;
+        }
+        .arrow{
+            border: solid blue;
+            border-width: 0 3px 3px 0;
+            display:inline-block;
+            padding: 3.2px;        
+        }
+        .left{
+            transform: rotate(135deg);
+            -webkit-transform: rotate(135deg);
+        }
+        .btn{
+            background-color: blue;
+            border: none;
+            color: white;
+            padding: 10px 48px;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 8px;
+            cursor: pointer; 
+        }
+        #entry{
+            width: 100%;
+            padding: 12px 20px;
+            margin: 8px 0;
+            display: inline-block;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+        }
+
+    </style>
     {% extends "learning_logs/base.html" %}
     {%block content %}
-    <p><a href="{% url 'learning_logs:topic' topic.id %}">{{topic}}</a> </p>
-    <p>Edit entry:</p>
-    <form action="{% url 'learning_logs:edit_entry' entry.id %}" method="post">
+    <button class="button"><i class="arrow left"></i><i class="arrow left"></i><a href="{% url 'learning_logs:topic' topic.id %}">{{topic}}</a></button> 
+    <h1>Edit Entry</h1>
+    <form action="{% url 'learning_logs:edit_entry' entry.id %}" method="post" class="form">
         <!-- to block attacker from gaining anuthorized access to the server..cross site request forgery -->
         {%csrf_token %}
         {{ form.as_p}}
-        <button name="submit">Save changes</button>
+        <button class="btn" name="submit">Save changes</button>
     </form>
     {% endblock content %}
 </body>

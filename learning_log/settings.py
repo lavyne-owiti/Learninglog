@@ -34,6 +34,7 @@ INSTALLED_APPS = [
      # my apps
     'learning_logs',
     'users',
+    'rest_framework',
     # default django apps
     'django.contrib.admin',
     'django.contrib.auth',
@@ -86,6 +87,7 @@ DATABASES = {
 }
 
 
+
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
 
@@ -122,6 +124,15 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 
+REST_FRAMEWORK={
+    # Use Django standard permissions
+    # or allow read only access for authenticaticated users.
+    'DEFAULT_PERMINSSION_CLASSES':(
+        'rest_framework.permissions.IsAuthenticated',),
+    'DEFAULT_AUTHENTICATION_CLASSES':('rest_framework_simplejwt.authentication.JWTAuthentication',),
+    
+}
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
@@ -130,3 +141,12 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # my settings
 LOGIN_URL='users:login'
+
+REST_FRAMEWORK={
+    'DEFAULT_FILTER_BACKENDS': [
+        'django_filters.rest_framework.DjangoFilterBackend'
+    ],
+    'DEFAULT_AUTHENTICATION_CLASSES':[
+         'rest_framework_simplejwt.authentication.JWTAuthentication',
+        ],
+}

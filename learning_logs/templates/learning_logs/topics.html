@@ -7,20 +7,73 @@
     <title>Document</title>
 </head>
 <body>
+    <style>
+        h1{
+            padding-top:2% ;
+            margin-left: 2%;
+        }
+        .content{
+            /* border: 1px solid black; */
+            margin-bottom: 1%;
+            background-color: pink;
+            width: 90%;
+            margin: auto;  
+            border-radius: 4px; 
+        }
+        li{
+            list-style: none;
+            padding-bottom: 2%;
+        }
+        li a{
+            text-decoration: none;
+            padding-left: 2%;     
+        }
+        .top{
+            /* border: 1px solid black; */
+            background-color: rgb(155, 155, 211);
+            margin-bottom: 1%;
+            width: 100%;
+            padding: 1%;
+            border-radius: 4px;
+        }   
+        h3 a{
+            text-decoration: none;
+        }
+        .move{
+            margin-left: 5%;
+            margin-top: 2%;
+        }
+        .bttn{
+            background-color: blue;
+            border: none;        
+            padding: 12px 32px;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 8px;
+            font-size: 16px; 
+        }
+        .bttn a{
+            color: white;
+        }
+      
+    </style>
     {% extends "learning_logs/base.html"%}
+    {% block page_header%}
+    <h1>Topics</h1>
+    {% endblock page_header%}
+
     {% block content %}
-    <p>Topics</p>
-    <ul>
+    <div class="content">
         {% for topic in topics %}
-        <li>
+        <li><div class="top">{{topic}}</div><h3>
             <a href="{% url 'learning_logs:topic' topic.id %}">{{ topic }}</a>
-        </li>
-        <li>{{topic}}</li>
+        </h3></li>
         {% empty %}
-        <li>No topics have been added yet.</li>
+        <li><h3>No topics have been added yet.</h3></li>
         {% endfor %}
-    </ul>
-    <a href="{% url 'learning_logs:new_topic' %}">Add a new topic</a>
+    </div>
+    
+    <h3 class="move"><button class="bttn"><a href="{% url 'learning_logs:new_topic' %}">Add a new topic</a></button></h3>
     {% endblock content %}
 </body>
 </html>

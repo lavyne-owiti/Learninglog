@@ -7,28 +7,80 @@
     <title>Document</title>
 </head>
 <body>
-    {% extends "learning_logs/base.html"%}
-    {% block content %}
+    <style>
+        *{
+            margin:0;
+        }
+        h3{
+            padding-top: 3%;
+            font-size: 30px;
+            padding-left: 2%;
+            padding-right: 2%;
+           
+        }
+        hr{
+            width: 90%;
+            color: black;
+            margin-left: 2%;
+        }
+        p a{
+            text-decoration: none;
+            margin-left: 2%;    
+        }
+        .new{
+            
+            margin-top: 1%;
+            margin-bottom: 2%;
+            margin-left: 2%;
+            padding-top: 1%;
+            width: 90%;
+            background-color: pink;
+            border-radius: 4px;
+            
+        }
+        .newbody{
+            padding: 2%;
+            margin-top: 1%;
+            width: 100%;
+            /* background-color: rgb(200, 193, 193); */
+            background-color:  rgb(155, 155, 211);
+            border-bottom-left-radius: 4px;
+            border-bottom-right-radius: 4px;
+        }
+        h4{
+            padding-left: 2%;
+        }
+        h4 a{
+            text-decoration: none;
+            margin-left: 1%;
+        }
 
-    <p>Topic:{{ topic }}</p>
-    <p>Entries</p>
+    </style>
+    {% extends "learning_logs/base.html"%}
+    {% block page_header %}
+    <h3>{{ topic }}</h3>
+    <hr>
+    {% endblock page_header %}
+    
+    {% block content %}
     <p>
         <a href="{% url 'learning_logs:new_entry' topic.id %}">Add new entry</a> 
     </p>
-    <ul>
         {% for entry in entries %}
-        <li>
-            <p>{{entry.date_added|date:'M d, Y H:i' }}</p>
-            <p>{{entry.text|linebreaks }}</p>
+        <div class="new">
+            <h4 class="heading">
+                {{entry.date_added|date:'M d, Y H:i' }}
+                <small><a href="{% url 'learning_logs:edit_entry' entry.id %}">Edit entry</a></small>
+            </h4>
+            <div class="newbody">
+                {{entry.text|linebreaks }}
 
-            <p>
-                <a href="{% url 'learning_logs:edit_entry' entry.id %}">Edit entry</a> 
-            </p>
-            </li>
+            </div>
+        </div>
         {% empty %}
-        <li>There are no entries for this topics yet.</li>
+        <p>There are no entries for this topics yet.<p>
         {% endfor %}
-    </ul>
+   
     {% endblock content %}
 </body>
 </html>

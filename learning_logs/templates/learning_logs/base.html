@@ -6,46 +6,68 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width>, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css'%}">
+
 </head>
 <body>
+    <style>
+        *{
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        .navbar{
+            display: flex;
+            justify-content: space-between;
+            padding: 1.5% 2%;  
+            background-color: pink ;   
+        }
+        .navbar-brand{
+            font-size: 20px;
+            text-decoration: none;
+            color: black;
+            font-weight: 600;    
+        }
+        .navbar-nav a{
+            padding-right: 20px;
+            text-decoration: none;
+        }
+        .box{
+            margin-top: 2%;
+            padding-bottom: 2%;
+        }
+    </style>
+
     <nav class="navbar">
-        <a class="navbar-brand" href="{% url 'learning_logs:index'%}">Learning Log </a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse"
-        data-target="#navbarCollapse" aria-controls="navbarCollape"
-        aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span></button>
-        <div class="collapse" id="navbarCollapse">
-            <ul class="navrbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'learning_logs:topics'%}">Topics</a>
-                </li>
-            </ul>
+        <ul class="navbar-nav">
+            <a class="navbar-brand" href="{% url 'learning_logs:index'%}">Learning Log </a>
+            <a href="{% url 'learning_logs:topics'%}">Topics</a>
+        </ul>
             <ul class="navbar-nav">
                 {% if user.is_authenticated %}
-                <li class="nav-item">
                     <span class="navbar-text"> Hello,{{user.username}}.</span>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'users:logout' %}"> Log out</a>
-                </li>
+                    <a  href="{% url 'users:logout' %}"> Log out</a>
                 {% else %}
-                <li class="nav-item">
-                    <a class="nav-link"  href="{% url 'users:register' %}"> Register</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link"  href="{% url 'users:login' %}">Log in</a>
-                </li>
+                    <a href="{% url 'users:register' %}"> Register</a>
+                    <a  href="{% url 'users:login' %}">Log in</a>
+              
                 {% endif %}
             </ul>
         </div>
     </nav>
+    <div class="container">
+        <div class="box">
+            {% block page_header %}{% endblock page_header %}
+        </div>
+        <div>
+            {%block content%}{% endblock content %}
+        </div>
+
+    </div>
+      
     
-    
-    {%block content%}{% endblock content %}
 </body>
 </html>
-
+ 
 
 
 

@@ -7,11 +7,78 @@
     <title>Document</title>
 </head>
 <body>
+    <style>
+        .block{
+            /* border: 1px solid blue; */
+            border-radius: 4px;
+            background-color: rgb(155, 155, 211);
+            margin: auto;
+            width: 90%;
+            height: 400px;
+        }
+        .block2{
+            padding-top: 3%;
+            padding-left: 2%;
+            padding-right: 2%;
+        }
+        .head{
+            font-size: 100px;
+            padding-bottom: 1%;
+
+        }
+        .lead{
+            font-size: 20px;
+            padding-bottom: 3%;
+        }
+        .btn{
+            background-color: blue;
+            border: none;
+            color: white;
+            padding: 12px 32px;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 8px;
+            font-size: 16px; 
+            cursor: pointer; 
+        }
+        .bottom{
+            width: 100%;
+            height: 50px;
+            background-color: pink;
+            margin-top: 8%;
+            border-bottom-left-radius: 4px;
+            border-bottom-right-radius: 4px;
+        }
+        .arrow{
+            border: solid white;
+            border-width: 0 3px 3px 0;
+            display:inline-block;
+            padding: 3px;
+        }
+        .right{
+            transform: rotate(-45deg);
+            -webkit-transform: rotate(-45deg);
+        }
+
+          
+    
+    </style>
     {% extends "learning_logs/base.html" %}
     {%block content %}
-    <p> Learning  Log</p>
-    <p>Learning Log helps you keep track of your learning, for any topic you're
-    learning about.</p>
-    {% endblock%}
+    <div class="block">
+        <div class="block2">
+            <h1 class="head"> Track your Learning.</h1>
+            <p class="lead">
+                Make your own Learning Log helps you keep track of any topic you're
+                learning about.Whenever you learn something new
+                about a topic, make an entry summarizing what you've learned.
+            </p>
+            <a class="btn" href="{% url 'users:register' %}">Register
+                <i class="arrow right"></i><i class="arrow right"></i>
+            </a>
+        </div>
+        <div class="bottom"> </div>
+    </div>
+    {% endblock %}
 </body>
 </html>
